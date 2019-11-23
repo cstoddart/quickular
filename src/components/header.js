@@ -1,42 +1,24 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import React from 'react';
+import { Link } from 'gatsby';
+import styled from 'styled-components';
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-)
+import { colors } from '../constants';
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
+const StyledHeader = styled.div`
+  padding: 25px;
+  background: ${colors.orange};
+`;
 
-Header.defaultProps = {
-  siteTitle: ``,
-}
+const Logo = styled(Link)`
+  font-size: 35px;
+  color: white;
+`;
 
-export default Header
+
+export const Header = ({ siteTitle }) => (
+  <StyledHeader>
+    <Logo to="/">
+      {siteTitle}
+    </Logo>
+  </StyledHeader>
+);

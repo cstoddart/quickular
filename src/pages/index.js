@@ -1,21 +1,25 @@
-import React from "react"
-import { Link } from "gatsby"
+import React, { useState } from 'react';
+import { Link } from 'gatsby';
+import Chance from 'chance';
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import { Button } from '../components';
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
+const chance = new Chance();
+
+const Create = () => {
+  const [sessionId, setSessionId] = useState(null);
+
+  const handleClick = () => {
+    const randomGuid = chance.guid();
+    setSessionId(randomGuid);
+  };
+
+  return (
+    <div>
+      <Button onClick={handleClick}>Start New Game</Button>
+      <div>Session ID: <Link to={`/play?sessionId=${sessionId}`}>{sessionId}</Link></div>
     </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+  );
+};
 
-export default IndexPage
+export default Create;
