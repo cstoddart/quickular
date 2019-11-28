@@ -26,7 +26,7 @@ export const ReactButton = () => {
   const [startTime, setStartTime] = useState(null);
   const [reactionTime, setReactionTime] = useState(null);
   const [isGameFinished, setIsGameFinished] = useState(false);
-  console.log('CONTEXT', context);
+
   useEffect(() => {
     setTimeout(function() {
       setColor(colors.pink);
