@@ -7,5 +7,5 @@ export const MainContent = styled.div`
   padding-top: 50px;
   max-width: ${siteWidth}px;
   width: 90%;
-  height: calc(100% - ${navigationHeight}px - ${footerHeight}px);
+  min-height: calc(100% - ${navigationHeight}px - ${footerHeight}px);
 `;
