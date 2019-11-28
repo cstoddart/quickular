@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import texasIcon from '../images/texas.svg';
+import gatsbyIcon from '../images/gatsby.svg';
 import gitHubIcon from '../images/gitHub.svg';
 import { siteWidth, footerHeight } from '../constants';
 
@@ -23,10 +24,19 @@ const FooterLeft = styled.div`
   align-items: center;
 `;
 
-const FooterRight = styled.div`
+const FooterMiddle = styled.a`
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  color:white;
+`;
+
+const FooterRight = styled.a`
   margin-left: 10px;
   display: flex;
   align-items: center;
+  color:white;
 `;
 
 const TexasIcon = styled.img`
@@ -34,8 +44,13 @@ const TexasIcon = styled.img`
   margin-left: 5px;
 `;
 
-const GitHubIcon = styled.img`
+const GatsbyIcon = styled.img`
   height: 12px;
+  margin-left: 5px;
+`;
+
+const GitHubIcon = styled.img`
+  height: 13px;
   margin-left: 5px;
 `;
 
@@ -44,7 +59,10 @@ export const Footer = () => (
     <FooterLeft>
       Made In <TexasIcon src={texasIcon} />
     </FooterLeft>
-    | <FooterRight>
+    | <FooterMiddle href="https://gatsbyjs.org" target="_blank">
+      Built With <GatsbyIcon src={gatsbyIcon} />
+    </FooterMiddle>
+    | <FooterRight href="https://github.com/cstoddart/quickular" target="_blank">
       View Source <GitHubIcon src={gitHubIcon} />
     </FooterRight>
   </StyledFooter>
