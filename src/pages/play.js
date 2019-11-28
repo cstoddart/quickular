@@ -26,7 +26,7 @@ function Play(props) {
   const [playerReady, setPlayerReady] = useState(!!context.playerName);
   const [gameStarted, setGameStarted] = useState(false);
   const [playerName, setPlayerName] = useState('');
-  console.log('CONTEXT @play', context);
+
   useEffect(function() {
     const parsedQueryString = queryString.parse(props.location.search);
     if (parsedQueryString.gameId === gameId) return;

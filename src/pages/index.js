@@ -17,7 +17,7 @@ import { StepThree } from '../components/home/stepThree';
 const chance = new Chance();
 
 function Home(props) {
-  const { updateContext, ...context } = useContext(appContext);
+  const { updateContext } = useContext(appContext);
   const [currentStep, setCurrentStep] = useState(0);
 
   function handleStartGame() {
@@ -26,7 +26,7 @@ function Home(props) {
     updateContext({ gameId: randomGuid });
     setCurrentStep(1);
   };
-  console.log('CONTEXT @index', context);
+
   return (
     <>
       {currentStep === 0 &&
