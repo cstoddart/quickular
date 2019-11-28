@@ -19,7 +19,7 @@ const ResultsLink = styled(Button)`
   margin-top: 25px;
 `;
 
-export const ReactButton = () => {
+export const ReactionSquares = () => {
   const { updateContext, ...context } = useContext(appContext);
   const { gameId, playerName } = context;
   const [color, setColor] = useState('gray');

@@ -8,7 +8,7 @@ import {
   Title,
   Input,
   Column,
-  ReactButton,
+  ReactionSquares,
 } from '../components';
 import { appContext } from '../app';
 
@@ -52,7 +52,7 @@ function Play(props) {
     <Column align="center">
       {gameStarted && playerReady
         ? (
-          <ReactButton {...props} />
+          <ReactionSquares {...props} />
         ) : (
           <>
             <Title>Join Game</Title>

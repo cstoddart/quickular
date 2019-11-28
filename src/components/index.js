@@ -4,7 +4,7 @@ export { Footer } from './footer';
 export { Header } from './header';
 export { Input } from './input';
 export { MainContent } from './mainContent';
-export { ReactButton } from './reactButton';
+export { ReactionSquares } from './reactionSquares';
 export { Row } from './row';
 export { Section } from './section';
 export { Title } from './title';
