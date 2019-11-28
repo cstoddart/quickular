@@ -75,7 +75,7 @@ export const StepThree = ({ host, navigate }) => {
 
   function handleStartGame() {
     startGame({ gameId });
-    navigate(`/play?gameId=${gameId}`);
+    navigate('/play');
   }
 
   return (
@@ -83,7 +83,7 @@ export const StepThree = ({ host, navigate }) => {
       <Section>
         <Title>Waiting For Players</Title>
         <Row align="center">
-          <Button onClick={copyToClipboard}>Copy Link To Clipboard</Button>
+          <Button onClick={copyToClipboard}>Copy To Clipboard</Button>
           <GameLink onClick={copyToClipboard}>quickular.com/play?gameId={gameId}</GameLink>
           <CopyText value={`${host}/play?gameId=${gameId}`} ref={copyTextRef} readOnly />
         </Row>

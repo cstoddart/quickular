@@ -3,16 +3,22 @@ import React, {
   useContext,
 } from 'react';
 import Chance from 'chance';
+import styled from 'styled-components';
 
 import { appContext } from '../app';
 import { createGame } from '../services/firebase';
 import {
   Button,
   Title,
+  Column,
 } from '../components';
 import { StepOne } from '../components/home/stepOne';
 import { StepTwo } from '../components/home/stepTwo';
 import { StepThree } from '../components/home/stepThree';
+
+const StyledColumn = styled(Column)`
+  height: 100%;
+`;
 
 const chance = new Chance();
 
@@ -28,7 +34,7 @@ function Home(props) {
   };
 
   return (
-    <>
+    <StyledColumn align="center" justify="center">
       {currentStep === 0 &&
         <>
           <Title>Welcome To Quickular</Title>
@@ -50,7 +56,7 @@ function Home(props) {
           navigate={props.navigate}
         />
       }
-    </>
+    </StyledColumn>
   );
 };
 

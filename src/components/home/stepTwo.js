@@ -50,7 +50,7 @@ export const StepTwo = ({
       <CopyText value={`${host}/play?gameId=${gameId}`} ref={copyTextRef} readOnly />
       {hasCopiedText
         ? <NextStepButton onClick={nextStep}>Next</NextStepButton>
-        : <NextStepButton onClick={copyToClipboard}>Copy Link To Clipboard</NextStepButton>
+        : <NextStepButton onClick={copyToClipboard}>Copy To Clipboard</NextStepButton>
       }
     </Section>
   );
