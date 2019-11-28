@@ -16,6 +16,7 @@ const StyledFooter = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 12px;
+  white-space: nowrap;
 `;
 
 const FooterLeft = styled.div`
