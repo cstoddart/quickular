@@ -22,6 +22,7 @@ export const StepOne = ({ setCurrentStep }) => {
   }
 
   function nextStep() {
+    if (!playerName) return;
     updateContext({ playerName });
     createPlayer({ gameId, playerName });
     setCurrentStep(2);
