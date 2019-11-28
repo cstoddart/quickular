@@ -13,13 +13,17 @@ const StyledReactButton = styled.div`
   cursor: pointer;
   border-radius: 25px;
   margin-bottom: 25px;
+
+  ${({ disabled }) => disabled && `
+    pointer-events: none;
+  `}
 `;
 
 const ResultsLink = styled(Button)`
   margin-top: 25px;
 `;
 
-export const ReactionSquares = () => {
+export const ReactionSquares = ({ practice }) => {
   const { updateContext, ...context } = useContext(appContext);
   const { gameId, playerName } = context;
   const [color, setColor] = useState('gray');
@@ -35,19 +39,42 @@ export const ReactionSquares = () => {
   }, []);
   
   const handleClick = () => {
+    console.log('PRACTICE', practice);
+    if (practice) {
+      const now = new Date().getTime();
+      setReactionTime(now - startTime);
+      setIsGameFinished(true);
+      return;
+    }
+
     const now = new Date().getTime();
     setReactionTime(now - startTime);
     setPlayerReactionTime({ gameId, playerName, reactionTime: now - startTime });
     setIsGameFinished(true);
   };
 
+  const retry = () => {
+    setReactionTime(null);
+    setColor('gray');
+    setIsGameFinished(false);
+    setStartTime(null);
+
+    setTimeout(function() {
+      setColor(colors.pink);
+      setStartTime(new Date().getTime());
+    }, 2000);
+  }
+
   return (
     <>
-      <StyledReactButton onClick={startTime && !isGameFinished ? handleClick : null} color={color} />
+      <StyledReactButton onClick={handleClick} disabled={!startTime || isGameFinished} color={color} />
       {reactionTime && 
         <>
           <div>Your reaction time: {reactionTime}ms</div>
-          <ResultsLink to={'/results'}>View Results</ResultsLink>
+          {practice
+            ? <Button onClick={retry}>Retry</Button>
+            : <ResultsLink to={'/results'}>View Results</ResultsLink>
+          }
         </>
       }
     </>

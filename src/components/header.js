@@ -39,10 +39,11 @@ const NavigationItem = styled(Link)`
 export const Header = (props) => (
   <StyledHeader>
     <HeaderContainer>
-      <Logo to={`/${props.location.search}`}>Quickular</Logo>
+      <Logo to="/">Quickular</Logo>
       <NavigationItems>
-        <NavigationItem to={`/${props.location.search}`}>Host</NavigationItem>
-        <NavigationItem to={`/play${props.location.search}`}>Join</NavigationItem>
+        <NavigationItem to="/">Host</NavigationItem>
+        <NavigationItem to="/play">Join</NavigationItem>
+        <NavigationItem to="/practice">Practice</NavigationItem>
       </NavigationItems>
     </HeaderContainer>
   </StyledHeader>
