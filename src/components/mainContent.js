@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-import { siteWidth, navigationHeight } from '../constants';
+import { siteWidth, navigationHeight, footerHeight } from '../constants';
 
 export const MainContent = styled.div`
-  margin: 150px auto 0;
+  margin: 0 auto;
+  padding-top: 150px;
   max-width: ${siteWidth}px;
   width: 90%;
-  height: calc(100% - ${navigationHeight}px);
+  height: calc(100% - ${navigationHeight}px - ${footerHeight}px);
 `;

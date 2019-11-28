@@ -11,3 +11,5 @@ export const colors = {
 export const siteWidth = 750;
 
 export const navigationHeight = 75;
+
+export const footerHeight = 50;
