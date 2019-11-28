@@ -22,9 +22,7 @@ const App = ({ children, ...props }) => {
       <GlobalStyles />
       <Header {...props} />
       <MainContent>{children}</MainContent>
-      <Footer>
-        Made By Stod & Stove
-      </Footer>
+      <Footer />
     </appContext.Provider>
   );
 };
