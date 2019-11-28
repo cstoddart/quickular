@@ -6,13 +6,22 @@ import { appContext } from '../app';
 import { colors } from '../constants';
 import { Button } from './button';
 
-const StyledReactButton = styled.div`
-  height: 250px;
-  width: 250px;
+const StyledReactionSquares = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: -10px;
+  margin-bottom: 25px;
+  justify-content: center;
+  max-width: 350px;
+`;
+
+const ReactionSquare = styled.div`
+  height: 150px;
+  width: 150px;
   background-color: ${({ color }) => color};
   cursor: pointer;
   border-radius: 25px;
-  margin-bottom: 25px;
+  margin: 10px;
 
   ${({ disabled }) => disabled && `
     pointer-events: none;
@@ -23,6 +32,15 @@ const ResultsLink = styled(Button)`
   margin-top: 25px;
 `;
 
+const reactionSquares = [
+  { index: 0 },
+  { index: 1 },
+  { index: 2 },
+  { index: 3 },
+  { index: 4 },
+  { index: 5 },
+];
+
 export const ReactionSquares = ({ practice }) => {
   const { updateContext, ...context } = useContext(appContext);
   const { gameId, playerName } = context;
@@ -30,6 +48,13 @@ export const ReactionSquares = ({ practice }) => {
   const [startTime, setStartTime] = useState(null);
   const [reactionTime, setReactionTime] = useState(null);
   const [isGameFinished, setIsGameFinished] = useState(false);
+  const [targetIndex, setTargetIndex] = useState(null);
+
+  useEffect(() => {
+    if (targetIndex) return;
+    const randomIndex = Math.floor(Math.random() * reactionSquares.length);
+    setTargetIndex(randomIndex);
+  }, [targetIndex]);
 
   useEffect(() => {
     setTimeout(function() {
@@ -39,7 +64,6 @@ export const ReactionSquares = ({ practice }) => {
   }, []);
   
   const handleClick = () => {
-    console.log('PRACTICE', practice);
     if (practice) {
       const now = new Date().getTime();
       setReactionTime(now - startTime);
@@ -58,6 +82,7 @@ export const ReactionSquares = ({ practice }) => {
     setColor('gray');
     setIsGameFinished(false);
     setStartTime(null);
+    setTargetIndex(null);
 
     setTimeout(function() {
       setColor(colors.pink);
@@ -67,12 +92,20 @@ export const ReactionSquares = ({ practice }) => {
 
   return (
     <>
-      <StyledReactButton onClick={handleClick} disabled={!startTime || isGameFinished} color={color} />
+      <StyledReactionSquares>
+        {reactionSquares.map(({ index }) => {
+          if (index === targetIndex) {
+            return <ReactionSquare key={index} onClick={handleClick} disabled={!startTime || isGameFinished} color={color} />
+          }
+
+          return <ReactionSquare key={index} color="gray" />
+        })}
+      </StyledReactionSquares>
       {reactionTime && 
         <>
           <div>Your reaction time: {reactionTime}ms</div>
           {practice
-            ? <Button onClick={retry}>Retry</Button>
+            ? <ResultsLink onClick={retry}>Retry</ResultsLink>
             : <ResultsLink to={'/results'}>View Results</ResultsLink>
           }
         </>
