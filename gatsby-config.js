@@ -10,10 +10,11 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-layout',
       options: {
-        component: require.resolve('./src/layout'),
+        component: require.resolve('./src/app'),
       },
     },
     {
@@ -35,20 +36,6 @@ module.exports = {
         icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
       },
     },
-    // {
-    //   resolve: "gatsby-plugin-firebase",
-    //   options: {
-    //     features: {
-    //       auth: false,
-    //       database: false,
-    //       firestore: true,
-    //       storage: false,
-    //       messaging: false,
-    //       functions: false,
-    //       performance: false,
-    //     },
-    //   },
-    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // 'gatsby-plugin-offline',

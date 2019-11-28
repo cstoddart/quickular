@@ -1,25 +1,57 @@
-import React, { useState } from 'react';
-import { Link } from 'gatsby';
+import React, {
+  useState,
+  useContext,
+} from 'react';
 import Chance from 'chance';
 
-import { Button } from '../components';
+import { appContext } from '../app';
+import { createGame } from '../services/firebase';
+import {
+  Button,
+  Title,
+} from '../components';
+import { StepOne } from '../components/home/stepOne';
+import { StepTwo } from '../components/home/stepTwo';
+import { StepThree } from '../components/home/stepThree';
 
 const chance = new Chance();
 
-const Create = () => {
-  const [sessionId, setSessionId] = useState(null);
+function Home(props) {
+  const { updateContext, ...context } = useContext(appContext);
+  const [currentStep, setCurrentStep] = useState(0);
 
-  const handleClick = () => {
+  function handleStartGame() {
     const randomGuid = chance.guid();
-    setSessionId(randomGuid);
+    createGame({ gameId: randomGuid });
+    updateContext({ gameId: randomGuid });
+    setCurrentStep(1);
   };
-
+  console.log('CONTEXT @index', context);
   return (
-    <div>
-      <Button onClick={handleClick}>Start New Game</Button>
-      <div>Session ID: <Link to={`/play?sessionId=${sessionId}`}>{sessionId}</Link></div>
-    </div>
+    <>
+      {currentStep === 0 &&
+        <>
+          <Title>Welcome To Quickular</Title>
+          <Button onClick={handleStartGame}>Start New Game</Button>
+        </>
+      }
+      {currentStep === 1 && 
+        <StepOne setCurrentStep={setCurrentStep} />
+      }
+      {currentStep === 2 && 
+        <StepTwo
+          setCurrentStep={setCurrentStep}
+          host={props.location.host}
+        />
+      }
+      {currentStep === 3 && 
+        <StepThree
+          host={props.location.host}
+          navigate={props.navigate}
+        />
+      }
+    </>
   );
 };
 
-export default Create;
+export default Home;

@@ -1,3 +1,10 @@
 export { Button } from './button';
+export { Column } from './column';
+export { Footer } from './footer';
 export { Header } from './header';
+export { Input } from './input';
+export { MainContent } from './mainContent';
 export { ReactButton } from './reactButton';
+export { Row } from './row';
+export { Section } from './section';
+export { Title } from './title';
