@@ -1,11 +1,7 @@
 import React from 'react';
 
-import { ReactionSquares, Column } from '../components';
+import { ReactionSquares } from '../components';
 
-const Practice = () => (
-  <Column align="center">
-    <ReactionSquares practice />
-  </Column>
-);
+const Practice = () => <ReactionSquares practice />;
 
 export default Practice;
