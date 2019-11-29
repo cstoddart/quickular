@@ -95,7 +95,7 @@ export const ReactionSquares = ({ practice }) => {
       <StyledReactionSquares>
         {reactionSquares.map(({ index }) => {
           if (index === targetIndex) {
-            return <ReactionSquare key={index} onClick={handleClick} disabled={!startTime || isGameFinished} color={color} />
+            return <ReactionSquare key={index} onMouseDown={handleClick} onTouchStart={handleClick} disabled={!startTime || isGameFinished} color={color} />
           }
 
           return <ReactionSquare key={index} color="gray" />
