@@ -10,7 +10,6 @@ import { createGame } from '../services/firebase';
 import {
   Button,
   Title,
-  Column,
 } from '../components';
 import { StepOne } from '../components/home/stepOne';
 import { StepTwo } from '../components/home/stepTwo';
