@@ -8,4 +8,7 @@ export const MainContent = styled.div`
   max-width: ${siteWidth}px;
   width: 90%;
   min-height: calc(100% - ${navigationHeight}px - ${footerHeight}px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
