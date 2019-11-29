@@ -16,8 +16,8 @@ import { StepOne } from '../components/home/stepOne';
 import { StepTwo } from '../components/home/stepTwo';
 import { StepThree } from '../components/home/stepThree';
 
-const StyledColumn = styled(Column)`
-  height: 100%;
+const StyledHome = styled.div`
+  padding-top: 100px;
 `;
 
 const chance = new Chance();
@@ -34,7 +34,7 @@ function Home(props) {
   };
 
   return (
-    <StyledColumn align="center" justify="center">
+    <StyledHome>
       {currentStep === 0 &&
         <>
           <Title>Welcome To Quickular</Title>
@@ -56,7 +56,7 @@ function Home(props) {
           navigate={props.navigate}
         />
       }
-    </StyledColumn>
+    </StyledHome>
   );
 };
 
