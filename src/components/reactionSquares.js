@@ -98,7 +98,7 @@ export const ReactionSquares = ({ practice }) => {
             return <ReactionSquare key={index} onMouseDown={handleClick} onTouchStart={handleClick} disabled={!startTime || isGameFinished} color={color} />
           }
 
-          return <ReactionSquare key={index} color="gray" />
+          return <ReactionSquare key={index} color="gray" disabled={!startTime || isGameFinished} />
         })}
       </StyledReactionSquares>
       {reactionTime && 
