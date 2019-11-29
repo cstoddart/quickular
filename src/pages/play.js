@@ -7,7 +7,6 @@ import {
   Button,
   Title,
   Input,
-  Column,
   ReactionSquares,
 } from '../components';
 import { appContext } from '../app';
@@ -49,7 +48,7 @@ function Play(props) {
   }
 
   return gameId ? (
-    <Column align="center">
+    <>
       {gameStarted && playerReady
         ? (
           <ReactionSquares {...props} />
@@ -64,7 +63,7 @@ function Play(props) {
           </>
         )
       }
-    </Column>
+    </>
   ) : <div>Contact your host for a shared link to join a game.</div>;
 };
 
