@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 
-import { watchPlayers } from '../services/firebase';
-import { Section, Title } from '../components';
-import { appContext } from '../app';
+import { watchPlayers } from '../../services/firebase';
+import { Section, Title } from '../../components';
+import { appContext } from '../../app';
 
 const Player = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ const Player = styled.div`
   }
 `;
 
-const Results = ({
+export const Results = ({
   host,
   navigate,
 }) => {
@@ -56,5 +56,3 @@ const Results = ({
     </Section>
   );
 };
-
-export default Results;
