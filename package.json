@@ -1,9 +1,7 @@
 {
   "name": "quickular",
   "private": true,
-  "description": "A better way to make group decisions",
   "version": "0.1.0",
-  "author": "Stod & Stove",
   "dependencies": {
     "chance": "^1.1.3",
     "firebase": "^7.5.0",
