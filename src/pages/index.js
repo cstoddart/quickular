@@ -14,6 +14,7 @@ import {
 import { StepOne } from '../components/home/stepOne';
 import { StepTwo } from '../components/home/stepTwo';
 import { StepThree } from '../components/home/stepThree';
+import { useShortcut } from '../hooks/useShortcut';
 
 const StyledHome = styled.div`
   padding-top: 100px;
@@ -24,6 +25,12 @@ const chance = new Chance();
 function Home(props) {
   const { updateContext } = useContext(appContext);
   const [currentStep, setCurrentStep] = useState(0);
+
+  useShortcut({
+    eventType: 'keydown',
+    triggerKey: 'Enter',
+    eventHandler: handleStartGame,
+  });
 
   function handleStartGame() {
     const randomGuid = chance.guid();
