@@ -1,57 +1,55 @@
-import React, { useState, useRef, useContext } from 'react';
+import React, {
+  useState,
+  useContext,
+  useRef,
+  useEffect,
+} from 'react';
 import styled from 'styled-components';
 
+import { createPlayer } from '../../services/firebase';
 import { appContext } from '../../app';
+import { Input } from '../input';
 import { Section } from '../section';
 import { Title } from '../title';
 import { Button } from '../button';
-
-const GameLink = styled.div`
-  margin-bottom: 25px;
-  color: white;
-  text-decoration: underline;
-`;
-
-const CopyText = styled.textarea`
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-  padding: 0;
-`;
+import { useShortcut } from '../../hooks/useShortcut';
 
 const NextStepButton = styled(Button)`
   margin-top: 25px;
 `;
 
-export const StepTwo = ({
-  setCurrentStep,
-  host,
-}) => {
+export const StepTwo = ({ setCurrentStep }) => {
   const { updateContext, ...context } = useContext(appContext);
   const { gameId } = context;
-  const [hasCopiedText, setHasCopiedText] = useState(false);
-  const copyTextRef = useRef();
+  const [playerName, setPlayerName] = useState(context.playerName);
+  const inputRef = useRef();
 
-  function copyToClipboard() {
-    copyTextRef.current.select();
-    document.execCommand('copy');
-    setHasCopiedText(true);
-  };
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
+  useShortcut({
+    eventType: 'keydown',
+    triggerKey: 'Enter',
+    eventHandler: nextStep,
+  });
+
+  function handlePlayerNameChange(event) {
+    setPlayerName(event.target.value);
+  }
 
   function nextStep() {
+    if (!playerName) return;
+    updateContext({ playerName });
+    createPlayer({ gameId, playerName });
     setCurrentStep(3);
   }
 
   return (
     <Section>
-      <Title>Share This Link</Title>
-      <GameLink onClick={copyToClipboard}>{`${host}/play?gameId=${gameId}`}</GameLink>
-      <CopyText value={`${host}/play?gameId=${gameId}`} ref={copyTextRef} readOnly />
-      {hasCopiedText
-        ? <NextStepButton onClick={nextStep}>Next</NextStepButton>
-        : <NextStepButton onClick={copyToClipboard}>Copy To Clipboard</NextStepButton>
-      }
+      <Title>What's Your Name?</Title>
+      <Input onChange={handlePlayerNameChange} value={playerName} ref={inputRef} />
+      <NextStepButton onClick={nextStep}>Next</NextStepButton>
     </Section>
   );
 };

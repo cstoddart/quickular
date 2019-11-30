@@ -1,63 +1,34 @@
-import React, {
-  useState,
-  useContext,
-} from 'react';
-import Chance from 'chance';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { appContext } from '../app';
-import { createGame } from '../services/firebase';
-import {
-  Button,
-  Title,
-} from '../components';
 import { StepOne } from '../components/home/stepOne';
 import { StepTwo } from '../components/home/stepTwo';
 import { StepThree } from '../components/home/stepThree';
-import { useShortcut } from '../hooks/useShortcut';
+import { StepFour } from '../components/home/stepFour';
 
 const StyledHome = styled.div`
   padding-top: 100px;
 `;
 
-const chance = new Chance();
-
 function Home(props) {
-  const { updateContext } = useContext(appContext);
-  const [currentStep, setCurrentStep] = useState(0);
-
-  useShortcut({
-    eventType: 'keydown',
-    triggerKey: 'Enter',
-    eventHandler: handleStartGame,
-  });
-
-  function handleStartGame() {
-    const randomGuid = chance.guid();
-    createGame({ gameId: randomGuid });
-    updateContext({ gameId: randomGuid });
-    setCurrentStep(1);
-  };
+  const [currentStep, setCurrentStep] = useState(1);
 
   return (
     <StyledHome>
-      {currentStep === 0 &&
-        <>
-          <Title>Welcome To Quickular</Title>
-          <Button onClick={handleStartGame}>Start New Game</Button>
-        </>
-      }
-      {currentStep === 1 && 
+      {currentStep === 1 &&
         <StepOne setCurrentStep={setCurrentStep} />
       }
       {currentStep === 2 && 
-        <StepTwo
+        <StepTwo setCurrentStep={setCurrentStep} />
+      }
+      {currentStep === 3 && 
+        <StepThree
           setCurrentStep={setCurrentStep}
           host={props.location.host}
         />
       }
-      {currentStep === 3 && 
-        <StepThree
+      {currentStep === 4 && 
+        <StepFour
           host={props.location.host}
           navigate={props.navigate}
         />

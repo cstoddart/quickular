@@ -1,55 +1,35 @@
-import React, {
-  useState,
-  useContext,
-  useRef,
-  useEffect,
-} from 'react';
-import styled from 'styled-components';
+import React, { useContext } from 'react';
+import Chance from 'chance';
 
-import { createPlayer } from '../../services/firebase';
-import { useShortcut } from '../../hooks/useShortcut';
+import { createGame } from '../../services/firebase';
 import { appContext } from '../../app';
-import { Input } from '../input';
+import { useShortcut } from '../../hooks/useShortcut';
 import { Section } from '../section';
 import { Title } from '../title';
 import { Button } from '../button';
 
-const NextStepButton = styled(Button)`
-  margin-top: 25px;
-`;
+const chance = new Chance();
 
 export const StepOne = ({ setCurrentStep }) => {
-  const { updateContext, ...context } = useContext(appContext);
-  const { gameId } = context;
-  const [playerName, setPlayerName] = useState();
-  const inputRef = useRef();
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
-
+  const { updateContext } = useContext(appContext);
+  
   useShortcut({
     eventType: 'keydown',
     triggerKey: 'Enter',
-    eventHandler: nextStep,
+    eventHandler: handleStartGame,
   });
 
-  function handlePlayerNameChange(event) {
-    setPlayerName(event.target.value);
-  }
-
-  function nextStep() {
-    if (!playerName) return;
-    updateContext({ playerName });
-    createPlayer({ gameId, playerName });
+  function handleStartGame() {
+    const randomGuid = chance.guid();
+    createGame({ gameId: randomGuid });
+    updateContext({ gameId: randomGuid });
     setCurrentStep(2);
-  }
+  };
 
   return (
     <Section>
-      <Title>What's Your Name?</Title>
-      <Input onChange={handlePlayerNameChange} ref={inputRef} onKeyDown={console.log} />
-      <NextStepButton onClick={nextStep}>Next</NextStepButton>
+      <Title>Welcome To Quickular</Title>
+      <Button onClick={handleStartGame}>Start New Game</Button>
     </Section>
   );
 };
