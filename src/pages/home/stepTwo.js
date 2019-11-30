@@ -18,7 +18,7 @@ const NextStepButton = styled(Button)`
   margin-top: 25px;
 `;
 
-export const StepTwo = ({ setCurrentStep }) => {
+const StepTwo = ({ setCurrentStep }) => {
   const { updateContext, ...context } = useContext(appContext);
   const { gameId } = context;
   const [playerName, setPlayerName] = useState(context.playerName);
@@ -53,3 +53,5 @@ export const StepTwo = ({ setCurrentStep }) => {
     </Section>
   );
 };
+
+export default StepTwo;

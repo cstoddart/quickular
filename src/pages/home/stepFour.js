@@ -46,7 +46,7 @@ const WaitingMessage = styled.div`
   margin-top: 25px;
 `;
 
-export const StepFour = ({ host, navigate }) => {
+const StepFour = ({ host, navigate }) => {
   const { updateContext, ...context } = useContext(appContext);
   const { gameId, playerName } = context;
   const [players, setPlayers] = useState([]);
@@ -104,3 +104,5 @@ export const StepFour = ({ host, navigate }) => {
     </>
   );
 };
+
+export default StepFour;

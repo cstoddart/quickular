@@ -15,7 +15,7 @@ const Player = styled.div`
   }
 `;
 
-export const Results = ({
+const Results = ({
   host,
   navigate,
 }) => {
@@ -56,3 +56,5 @@ export const Results = ({
     </Section>
   );
 };
+
+export default Results;

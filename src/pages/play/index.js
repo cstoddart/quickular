@@ -1,3 +1,3 @@
-import { Play } from './play';
+import Play from './play';
 
 export default Play;

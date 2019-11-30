@@ -10,7 +10,7 @@ import { Button } from '../../components/button';
 
 const chance = new Chance();
 
-export const StepOne = ({ setCurrentStep }) => {
+const StepOne = ({ setCurrentStep }) => {
   const { updateContext } = useContext(appContext);
   
   useShortcut({
@@ -33,3 +33,5 @@ export const StepOne = ({ setCurrentStep }) => {
     </Section>
   );
 };
+
+export default StepOne;

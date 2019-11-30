@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { StepOne } from './stepOne';
-import { StepTwo } from './stepTwo';
-import { StepThree } from './stepThree';
-import { StepFour } from './stepFour';
+import StepOne from './stepOne';
+import StepTwo from './stepTwo';
+import StepThree from './stepThree';
+import StepFour from './stepFour';
 
 const StyledHome = styled.div`
   padding-top: 100px;
 `;
 
-export const Home = (props) => {
+const Home = (props) => {
   const [currentStep, setCurrentStep] = useState(1);
 
   return (
@@ -36,3 +36,5 @@ export const Home = (props) => {
     </StyledHome>
   );
 };
+
+export default Home;

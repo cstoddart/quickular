@@ -24,7 +24,7 @@ const NextStepButton = styled(Button)`
   margin-top: 25px;
 `;
 
-export const StepThree = ({
+const StepThree = ({
   setCurrentStep,
   host,
 }) => {
@@ -55,3 +55,5 @@ export const StepThree = ({
     </Section>
   );
 };
+
+export default StepThree;

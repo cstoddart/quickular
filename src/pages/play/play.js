@@ -19,7 +19,7 @@ const PlayerReadyButton = styled(Button)`
   margin-bottom: 25px;
 `;
 
-export const Play = (props) => {
+const Play = (props) => {
   const { updateContext, ...context } = useContext(appContext);
   const { gameId } = context;
   const [playerReady, setPlayerReady] = useState(!!context.playerName);
@@ -66,3 +66,5 @@ export const Play = (props) => {
     </>
   ) : <div>Contact your host for a shared link to join a game.</div>;
 };
+
+export default Play;

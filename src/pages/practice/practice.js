@@ -2,4 +2,6 @@ import React from 'react';
 
 import { ReactionSquares } from '../../components';
 
-export const Practice = () => <ReactionSquares practice />;
+const Practice = () => <ReactionSquares practice />;
+
+export default Practice;
