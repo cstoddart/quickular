@@ -2,14 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import queryString from 'query-string';
 import styled from 'styled-components';
 
-import { watchGameStarted, createPlayer } from '../services/firebase';
+import { watchGameStarted, createPlayer } from '../../services/firebase';
 import {
   Button,
   Title,
   Input,
   ReactionSquares,
-} from '../components';
-import { appContext } from '../app';
+} from '../../components';
+import { appContext } from '../../app';
 
 const PlayerNameInput = styled(Input)`
   margin-bottom: 25px;
@@ -19,7 +19,7 @@ const PlayerReadyButton = styled(Button)`
   margin-bottom: 25px;
 `;
 
-function Play(props) {
+export const Play = (props) => {
   const { updateContext, ...context } = useContext(appContext);
   const { gameId } = context;
   const [playerReady, setPlayerReady] = useState(!!context.playerName);
@@ -66,5 +66,3 @@ function Play(props) {
     </>
   ) : <div>Contact your host for a shared link to join a game.</div>;
 };
-
-export default Play;

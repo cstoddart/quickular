@@ -2,9 +2,9 @@ import React, { useState, useRef, useContext } from 'react';
 import styled from 'styled-components';
 
 import { appContext } from '../../app';
-import { Section } from '../section';
-import { Title } from '../title';
-import { Button } from '../button';
+import { Section } from '../../components/section';
+import { Title } from '../../components/title';
+import { Button } from '../../components/button';
 
 const GameLink = styled.div`
   margin-bottom: 25px;

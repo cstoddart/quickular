@@ -4,9 +4,9 @@ import Chance from 'chance';
 import { createGame } from '../../services/firebase';
 import { appContext } from '../../app';
 import { useShortcut } from '../../hooks/useShortcut';
-import { Section } from '../section';
-import { Title } from '../title';
-import { Button } from '../button';
+import { Section } from '../../components/section';
+import { Title } from '../../components/title';
+import { Button } from '../../components/button';
 
 const chance = new Chance();
 

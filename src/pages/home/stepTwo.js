@@ -8,10 +8,10 @@ import styled from 'styled-components';
 
 import { createPlayer } from '../../services/firebase';
 import { appContext } from '../../app';
-import { Input } from '../input';
-import { Section } from '../section';
-import { Title } from '../title';
-import { Button } from '../button';
+import { Input } from '../../components/input';
+import { Section } from '../../components/section';
+import { Title } from '../../components/title';
+import { Button } from '../../components/button';
 import { useShortcut } from '../../hooks/useShortcut';
 
 const NextStepButton = styled(Button)`

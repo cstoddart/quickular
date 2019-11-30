@@ -3,10 +3,10 @@ import styled from 'styled-components';
 
 import { watchPlayers, startGame } from '../../services/firebase';
 import check from '../../images/check.svg';
-import { Section } from '../section';
-import { Title } from '../title';
-import { Button } from '../button';
-import { Row } from '../row';
+import { Section } from '../../components/section';
+import { Title } from '../../components/title';
+import { Button } from '../../components/button';
+import { Row } from '../../components/row';
 import { appContext } from '../../app';
 
 const GameLink = styled.div`
