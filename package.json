@@ -37,6 +37,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "push": "git push && npm run build && firebase deploy"
+    "deploy": "npm run build && firebase deploy",
+    "push": "git push && npm run deploy"
   }
 }
