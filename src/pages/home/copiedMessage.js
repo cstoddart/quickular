@@ -35,3 +35,5 @@ export const CopiedMessage = () => {
 
   return <StyledCopiedMessage ref={copiedMessageRef} width={copiedMessageWidth}>Text Copied</StyledCopiedMessage>;
 };
+
+export default CopiedMessage;
