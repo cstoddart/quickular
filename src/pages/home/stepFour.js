@@ -8,6 +8,11 @@ import { Title } from '../../components/title';
 import { Button } from '../../components/button';
 import { Row } from '../../components/row';
 import { appContext } from '../../app';
+import { CopiedMessage } from './copiedMessage';
+
+const GameLinkContainer = styled.div`
+  position: relative;
+`;
 
 const GameLink = styled.div`
   color: white;
@@ -50,6 +55,7 @@ const StepFour = ({ host, navigate }) => {
   const { updateContext, ...context } = useContext(appContext);
   const { gameId, playerName } = context;
   const [players, setPlayers] = useState([]);
+  const [hasCopiedText, setHasCopiedText] = useState(false);
   const copyTextRef = useRef();
 
   useEffect(function() {
@@ -71,6 +77,7 @@ const StepFour = ({ host, navigate }) => {
   function copyToClipboard() {
     copyTextRef.current.select();
     document.execCommand('copy');
+    setHasCopiedText(true);
   };
 
   function handleStartGame() {
@@ -84,7 +91,10 @@ const StepFour = ({ host, navigate }) => {
         <Title>Waiting For Players</Title>
         <Row align="center">
           <Button onClick={copyToClipboard}>Copy To Clipboard</Button>
-          <GameLink onClick={copyToClipboard}>quickular.com/play?gameId={gameId}</GameLink>
+          <GameLinkContainer>
+            <GameLink onClick={copyToClipboard}>quickular.com/play?gameId={gameId}</GameLink>
+            {hasCopiedText && <CopiedMessage />}
+          </GameLinkContainer>
           <CopyText value={`${host}/play?gameId=${gameId}`} ref={copyTextRef} readOnly />
         </Row>
       </Section>

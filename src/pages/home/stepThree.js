@@ -5,9 +5,13 @@ import { appContext } from '../../app';
 import { Section } from '../../components/section';
 import { Title } from '../../components/title';
 import { Button } from '../../components/button';
+import { CopiedMessage } from './copiedMessage';
+
+const GameLinkContainer = styled.div`
+  position: relative;
+`;
 
 const GameLink = styled.div`
-  margin-bottom: 25px;
   color: white;
   text-decoration: underline;
 `;
@@ -20,8 +24,9 @@ const CopyText = styled.textarea`
   padding: 0;
 `;
 
-const NextStepButton = styled(Button)`
-  margin-top: 25px;
+const ButtonContainer = styled.div`
+  margin-top: 50px;
+  position: relative;
 `;
 
 const StepThree = ({
@@ -46,12 +51,17 @@ const StepThree = ({
   return (
     <Section>
       <Title>Share This Link</Title>
-      <GameLink onClick={copyToClipboard}>{`${host}/play?gameId=${gameId}`}</GameLink>
+      <GameLinkContainer>
+        <GameLink onClick={copyToClipboard}>{`${host}/play?gameId=${gameId}`}</GameLink>
+        {hasCopiedText && <CopiedMessage />}
+      </GameLinkContainer>
       <CopyText value={`${host}/play?gameId=${gameId}`} ref={copyTextRef} readOnly />
-      {hasCopiedText
-        ? <NextStepButton onClick={nextStep}>Next</NextStepButton>
-        : <NextStepButton onClick={copyToClipboard}>Copy To Clipboard</NextStepButton>
-      }
+      <ButtonContainer>
+        {hasCopiedText
+          ? <Button onClick={nextStep}>Next</Button>
+          : <Button onClick={copyToClipboard}>Copy To Clipboard</Button>
+        }
+      </ButtonContainer>
     </Section>
   );
 };
