@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 
 const StyledCopiedMessage = styled.div`
@@ -11,6 +11,8 @@ const StyledCopiedMessage = styled.div`
   padding: 5px 10px;
   white-space: nowrap;
   font-size: 14px;
+  opacity: ${({ isVisible }) => isVisible ? 1 : 0};
+  transition: 0.5s ease-in;
 
   &:before {
     content: '';
@@ -24,8 +26,24 @@ const StyledCopiedMessage = styled.div`
   }
 `;
 
-export const CopiedMessage = () => {
+export const CopiedMessage = ({ setHasCopiedText }) => {
   const [copiedMessageWidth, setCopiedMessageWidth] = useState();
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    let innerTimeout;
+    const timeout = setTimeout(() => {
+      setIsVisible(false);
+      innerTimeout = setTimeout(() => {
+        setHasCopiedText && setHasCopiedText(false);
+      }, 500);
+    }, 1500);
+
+    return () => {
+      clearTimeout(timeout);
+      clearTimeout(innerTimeout);
+    };
+  }, [setHasCopiedText]);
 
   const copiedMessageRef = useCallback((node) => {
     if (!node) return;
@@ -33,7 +51,7 @@ export const CopiedMessage = () => {
     setCopiedMessageWidth(nodeWidth);
   }, []);
 
-  return <StyledCopiedMessage ref={copiedMessageRef} width={copiedMessageWidth}>Text Copied</StyledCopiedMessage>;
+  return <StyledCopiedMessage ref={copiedMessageRef} width={copiedMessageWidth} isVisible={isVisible}>Text Copied</StyledCopiedMessage>;
 };
 
 export default CopiedMessage;
