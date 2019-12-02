@@ -93,7 +93,7 @@ const StepFour = ({ host, navigate }) => {
           <Button onClick={copyToClipboard}>Copy To Clipboard</Button>
           <GameLinkContainer>
             <GameLink onClick={copyToClipboard}>quickular.com/play?gameId={gameId}</GameLink>
-            {hasCopiedText && <CopiedMessage />}
+            {hasCopiedText && <CopiedMessage setHasCopiedText={setHasCopiedText} />}
           </GameLinkContainer>
           <CopyText value={`${host}/play?gameId=${gameId}`} ref={copyTextRef} readOnly />
         </Row>
