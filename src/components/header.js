@@ -20,7 +20,7 @@ const HeaderContainer = styled.div`
 `;
 
 const Logo = styled(Link)`
-  font-size: 35px;
+  font-size: 28px;
   color: white;
 `;
 
@@ -32,7 +32,7 @@ const NavigationItem = styled(Link)`
   color: white; 
 
   &:not(:last-of-type) {
-    margin-right: 25px;
+    margin-right: 15px;
   }
 `;
 
